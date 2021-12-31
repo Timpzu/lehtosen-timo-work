@@ -3,15 +3,16 @@
     --lightYellow: #fff8d5;
     --black: #000000;
     --blue: #4B4B9A;
-    --contentWidth: 1024px;
+    --contentWidth: 1140px;
 }
 
 body {
-    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-family: neue-haas-grotesk-text, sans-serif;
     font-size: 16px;
 }
 
 h1, h2, h3, h4, h5 {
+    font-family: commuters-sans, sans-serif;
     font-weight: bold;
     margin-bottom: 0.5em;
     margin-top: 0.75em;
@@ -42,11 +43,17 @@ p {
 }
 
 hr {
-    border-width: 12px 0 0 0;
     border-color: var(--black);
-    border-image-source: url('../img/dots.svg');
+    border-style: solid;
+    /* border-image-source: url('../img/dots.svg');
     border-image-slice: 33%;
     border-image-repeat: round;
+    border-width: 32px 0 0 0; */
+      border-image: url("../img/dots_border.svg")
+    100% 0%;
+  border-width: 16px 0 0 0;
+  border-image-repeat: round;
+  border-style: solid;
 }
 
 a {
@@ -69,19 +76,27 @@ a:hover {
 
 button,
 a.button {
-    align-items: center;
     background: none;
+    display: inline-block;
+    height: 100%;
+    margin: 8px;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+}
+
+button span,
+a.button span {
+    align-items: center;
+    border: 3px solid var(--black);
     border-radius: 40px;
     color: var(--black);
     display: inline-flex;
+    font-family: space-mono, mono;
     font-size: 0.9em;
     font-weight: bold;
     height: 40px;
-    margin: 8px;
-    outline: 3px solid var(--black);
     padding: 0 24px;
-    position: relative;
-    text-decoration: none;
     transition: transform 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
     z-index: 2;
 } 
@@ -99,13 +114,13 @@ a.button::after {
     border-radius: 40px;
     bottom: -8px;
     content: " ";
-    height: 40px;
     left: 6px;
+    margin: 3px;
     position: absolute;
     right: -6px;
     top: 8px;
     transition: transform 0.1s linear;
-    z-index: -1;
+    z-index: -2;
 }
 
 button:hover::after,
@@ -120,28 +135,9 @@ button.button-simple::after {
     background-color: #E3DFBE;
 }
 
-button::before,
-a.button::before {
-    bottom: -10px;
-    content: " ";
-    left: -10px;
-    position: absolute;
-    right: -10px;
-    top: -10px;
-}
-
-button:focus::before,
-a.button:focus::before {
-    border: 3px solid var(--blue);
-}
-
 a.anchor-logo {
     background: none;
     border: 3px solid transparent;
-}
-
-a.anchor-logo:focus {
-    border: 3px solid var(--blue);
 }
 
 .grid-lg {
@@ -387,6 +383,7 @@ a.section-grid-anchor-block span.service-icon.create-icon::after {
 
 h3.section-grid-anchor-block-heading {
     align-items: center;
+    font-family: space-mono, mono;
     display: flex;
     font-size: 18px;
     font-weight: bold;
@@ -411,16 +408,13 @@ a.section-grid-anchor-block:focus h3.section-grid-anchor-block-heading span.inne
     100% {transform: translateX(0);}
 }
 
-a.section-grid-anchor-block:focus {
-    border: 3px solid var(--blue);
-}
-
 section.services {
     border: 3px solid var(--black);
 }
 
 h2.services-heading {
     border-bottom: 3px solid var(--black);
+    font-weight: bold;
     font-size: 1.5em;
     margin: 0 24px;
     padding: 24px 0;
@@ -447,12 +441,13 @@ section.contact::after {
     -45deg,
     var(--lightYellow),
     var(--lightYellow) 10px,
-    rgba(0, 0, 0, 0.1) 12px,
-    rgba(0, 0, 0, 0.1) 12px
+    rgba(0, 0, 0, 1) 12px,
+    rgba(0, 0, 0, 1) 12px
     );
     bottom: 0;
     content: " ";
     left: 0;
+    opacity: 0.1;
     position: absolute;
     right: 0;
     top: 0;
@@ -471,7 +466,6 @@ section.contact::before {
 }
 
 .contact-image-container {
-    background-image: url('../img/contact-phone-notepad.jpg');
     background-size: cover;
     height: 164px;
     margin: 0 auto;
@@ -485,7 +479,7 @@ section.contact::before {
 .contact-image-container::after {
     background-color: #ffffff;
     bottom: -9.5px;
-    border-radius: 1000px;
+    border-radius: 100%;
     content: " ";
     left: -9.5px;
     position: absolute;
@@ -495,9 +489,11 @@ section.contact::before {
 }
 
 img.contact-image {
-    border-radius: 1000px;
+    border-radius: 100%;
     height: 100%;
-    outline: 3px solid var(--black);
+    border: 3px solid var(--black);
+    box-sizing: border-box;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -522,18 +518,42 @@ footer .footer-content {
 }
 
 a.footer-link {
+    background: none;
+    color: var(--black);
+    display: inline-block;
+    font-family: space-mono, mono;
+    margin: 16px 32px;
+    position: relative;
+    transition: color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 10;
+
+}
+
+a.footer-link::after {
     background: linear-gradient(0deg, var(--black) 100%, transparent 0%);
     background-position-y: bottom;
     background-repeat: no-repeat;
-    background-size: auto 12%;
-    color: var(--black);
-    display: inline-block;
-    margin: 16px 32px;
+    background-size: 100% 50%;
+    bottom: 0;
+    content: " ";
+    left: 0;
+    opacity: 0.3;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(6%);
+    transition: background-size 0.3s cubic-bezier(0.075, 0.82, 0.165, 1), opacity 0.3s cubic-bezier(0.075, 0.82, 0.165, 1), transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: -1;
 }
 
 a.footer-link:hover {
-    background-size: auto 100%;
-    color: #fff;
+    color: #ffffff;
+}
+
+a.footer-link:hover::after {
+    background-size: 100% 100%;
+    opacity: 0.87;
+    transform: translateX(0);
 }
 
 /* SVG Logo */
@@ -593,57 +613,3 @@ a#site-logo-anchor:focus .part-4 {
     0% {transform: scale(1);}
     100% {transform: scale(1.075);}
 }
-
-
-
-
-
-
-.holder {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    overflow: hidden;
-}
-.clip {
-    /* Clip edges, as some of the lines don't terminate nicely. */
-    overflow: hidden;
-}
-
-.line {
-    position: absolute;
-    width: 200%;
-    /* Height set to clip correctly basically background-size/2 + line width */
-    height: 26px;
-}
-.line1 {
-    background: linear-gradient(0deg, transparent, transparent 49%, black 49%, transparent 51%);
-    background-position-y: center;
-}
-.line2 {
-    background: linear-gradient(0deg, transparent, transparent 49%, black 49%, transparent 51%);
-    background-position-y: center;
-}
-.line {
-    /* Must be after background definition. */
-    background-size: 50px 50px;
-}
-
-.testi:hover .line1 {
-    background: linear-gradient(45deg, transparent, transparent 49%, black 49%, transparent 51%);
-}
-.testi:hover .line2 {
-    background: linear-gradient(-45deg, transparent, transparent 49%, black 49%, transparent 51%);
-}
-
-.testi:hover .line {
-    animation: wavy-line 0.9s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
-    background-size: 50px 50px;
-}
-
-@keyframes wavy-line {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(-50%);}
-}
-
-/* linear-gradient(0deg, #434389 100%, transparent 0%); */
