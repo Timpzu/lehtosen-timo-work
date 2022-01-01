@@ -273,7 +273,7 @@
                         </svg>
                     </a>
                     <div class="header-flex-item">
-                        <a class="button" href="#"><span>Ota yhteyttä</span></a>
+                        <a class="button" href="#"><span class="button-content">Ota yhteyttä</span></a>
                     </div>
                 </div>
                 <p class="header-site-desccription">Praesent vulputate maximus ligula, placerat fringilla nisi efficitur eu.</p>
@@ -291,12 +291,12 @@
                 </ul>
             </nav>
             <main>
-                <section class="intro home-intro" aria-labelledby="main-heading">
-                    <h1 id="main-heading">Saavutettavuus&shy;asiantuntija palveluksessasi</h1>
+                <section class="main-section intro home-intro" aria-labelledby="main-heading">
+                    <h1 id="main-heading">Saavu&shy;tettavuus&shy;asiantuntija palveluk&shy;sessasi</h1>
                     <p>Praesent vulputate maximus ligula, placerat fringilla nisi efficitur eu. Nulla vitae augue vulputate purus ullamcorper lobortis luctus volutpat eros. Praesent vel tincidunt velit. Aliquam porta erat sit amet mattis sollicitudin. Donec vitae finibus felis. Etiam euismod malesuada finibus. Aenean ac leo et sapien placerat placerat.</p>
                     <img class="intro-image" src="img/LEHTOSENTIMO_BRAND_PHOTOS_cropped_23_OMA.jpg" alt="">
                 </section>
-                <section class="services" aria-labelledby="service-heading">
+                <section class="main-section services" aria-labelledby="service-heading">
                     <h2 class="services-heading" id="service-heading">Palvelut</h2>
                     <div class="grid-sm services-grid-anchor-blocks">
                         <a class="section-grid-anchor-block" href="#">
@@ -329,27 +329,52 @@
                         </a>
                     </div>
                 </section>
-                <section class="contact" aria-labelledby="contact-heading">
+                <section class="main-section contact" aria-labelledby="contact-heading">
                     <div class="contact-image-container">
                         <img class="contact-image" src="img/contact-phone-notepad.jpg" alt="">
                     </div>
                     <h2 class="grid-section-heading" id="contact-heading">Ollaan yhteyksissä</h2>
                     <p>Praesent vulputate maximus ligula, placerat fringilla nisi efficitur eu. Nulla vitae augue vulputate purus ullamcorper lobortis luctus volutpat eros. Praesent vel tincidunt velit.</p>
-                    <a href="#" class="button"><span>Yhteydenottolomake</span></a>
-                    <a href="#" class="button button-simple"><span>timo@lehtosentimo.fi</span></a>
+                    <a href="#" class="button"><span class="button-content">Yhteydenottolomake</span></a>
+                    <a href="#" class="button button-simple"><span class="button-content">timo@lehtosentimo.fi</span></a>
                 </section>
             </main>
         </div>
         <footer>
-            <div class="footer-content">
-                <p>Praesent vulputate maximus ligula, placerat fringilla nisi efficitur eu. Nulla vitae augue vulputate purus ullamcorper lobortis luctus volutpat eros. Praesent vel tincidunt velit.</p>
-                <a class="footer-link" href="#">Lorem ipsum</a>
-                <a class="footer-link" href="#">Lorem ipsum</a>
-                <a class="footer-link" href="#">Lorem ipsum</a>
-                <hr>
-                <a data-text="Saavutettavuusseloste" class="footer-link" href="#">Saavutettavuusseloste</a>
-                <a class="footer-link" href="#">Tietosuojaseloste</a>
+            <div class="footer-container">
+                <div class="footer-container-flex-item"></div>
+                <div class="footer-content">
+                    <p>Praesent vulputate maximus ligula, placerat fringilla nisi efficitur eu. Nulla vitae augue vulputate purus ullamcorper lobortis luctus volutpat eros. Praesent vel tincidunt velit.</p>
+                    <a class="footer-link" href="#">Lorem ipsum</a>
+                    <a class="footer-link" href="#">Lorem ipsum</a>
+                    <a class="footer-link" href="#">Lorem ipsum</a>
+                    <hr>
+                    <a data-text="Saavutettavuusseloste" class="footer-link" href="#">Saavutettavuusseloste</a>
+                    <a class="footer-link" href="#">Tietosuojaseloste</a>
+                </div>
+                <div class="footer-container-flex-item footer-button-container">
+                    <button id="backtotop-btn" class="footer-button" aria-label="Takaisin ylös"><span class="button-content"><span class="material-icons" aria-hidden="true">arrow_upward</span>Ylös</span></button>
+                </div>
             </div>
         </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+             $(window).scroll(function() {
+                scrollFunction();
+             });
+
+            function scrollFunction() {
+                if ($(document).scrollTop() > 300) {
+                    $("#backtotop-btn").css('transform', 'translateY(0)');
+                } else {
+                    $("#backtotop-btn").css('transform', 'translateY(80px)');
+                }
+            };
+
+            $("#backtotop-btn").click(function() {
+                $(document).scrollTop(0);
+            });
+
+            </script>
     </body>
 </html>

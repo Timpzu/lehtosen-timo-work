@@ -11,9 +11,16 @@ body {
     font-size: 16px;
 }
 
+@media only screen and (max-width: 840px) {
+    body {
+        font-size: 14px;
+    }
+}
+
 h1, h2, h3, h4, h5 {
     font-family: commuters-sans, sans-serif;
     font-weight: bold;
+    hyphens: manual;
     margin-bottom: 0.5em;
     margin-top: 0.75em;
 }
@@ -45,15 +52,10 @@ p {
 hr {
     border-color: var(--black);
     border-style: solid;
-    /* border-image-source: url('../img/dots.svg');
-    border-image-slice: 33%;
+    border-image: url("../img/dots_border.svg") 100% 0%;
+    border-width: 16px 0 0 0;
     border-image-repeat: round;
-    border-width: 32px 0 0 0; */
-      border-image: url("../img/dots_border.svg")
-    100% 0%;
-  border-width: 16px 0 0 0;
-  border-image-repeat: round;
-  border-style: solid;
+    border-style: solid;
 }
 
 a {
@@ -77,6 +79,7 @@ a:hover {
 button,
 a.button {
     background: none;
+    border: none;
     display: inline-block;
     height: 100%;
     margin: 8px;
@@ -85,8 +88,8 @@ a.button {
     text-decoration: none;
 }
 
-button span,
-a.button span {
+button span.button-content,
+a.button span.button-content {
     align-items: center;
     border: 3px solid var(--black);
     border-radius: 40px;
@@ -135,9 +138,15 @@ button.button-simple::after {
     background-color: #E3DFBE;
 }
 
+button .material-icons,
+a.button .material-icons {
+    margin-right: 8px;
+}
+
 a.anchor-logo {
     background: none;
     border: 3px solid transparent;
+    margin-bottom: 8px;
 }
 
 .grid-lg {
@@ -207,6 +216,15 @@ header {
     }
 }
 
+@media only screen and (max-width: 840px) {
+    header {
+        grid-column: 1 / span 8;
+    }
+    .header-flex-container {
+        flex-direction: column;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     header {
         grid-column: 1 / span 4;
@@ -240,7 +258,17 @@ header {
 
 /* Nav */
 nav.main-nav {
+    border-right: 3px solid var(--black);
     grid-column: 1 / span 4;
+    margin: 48px;
+}
+
+@media only screen and (max-width: 1140px) {
+    nav.main-nav {
+        border: 0;
+        grid-column: 2 / span 10;
+        margin: 0;
+    }
 }
 
 @media only screen and (max-width: 840px) {
@@ -258,6 +286,12 @@ nav.main-nav {
 /* Main */
 main {
     grid-column: 5 / span 8;
+}
+
+@media only screen and (max-width: 1140px) {
+    main {
+        grid-column: 2 / span 10;
+    }
 }
 
 @media only screen and (max-width: 840px) {
@@ -301,6 +335,20 @@ main {
 /* Sections */
 section {
     margin: 32px 0;
+}
+
+section.main-section:first-child {
+    margin-top: 48px;
+}
+
+section.main-section:first-child h1,
+section.main-section:first-child h2
+section.main-section:first-child h3 {
+    margin-top: 48px;
+}
+
+section.main-section:last-child {
+    margin-bottom: 56px;
 }
 
 section.intro.home-intro p {
@@ -503,17 +551,76 @@ footer {
     border-top: 3px solid var(--black);
 }
 
-footer .footer-content {
-    margin: 0 auto;
-    max-width: var(--contentWidth);
-    max-width: 680px;
-    padding: 48px 24px;
-    text-align: center;
-}
-
 @media only screen and (max-width: 720px) {
     footer .footer-content {
         padding: 24px 16px;
+    }
+}
+
+footer .footer-container {
+    display: flex;
+    padding: 48px 24px;
+}
+
+.footer-container-flex-item {
+    flex: 1;
+    position: relative;
+}
+
+footer .footer-content {
+    flex: 2;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1140px) {
+    footer .footer-content {
+        flex: 4;
+    }
+}
+
+@media only screen and (max-width: 840px) {
+    footer .footer-container {
+        flex-direction: column;
+    }
+}
+
+button.footer-button {
+    bottom: 32px;
+    height: auto;
+    inline-size: min-content;
+    margin: 0;
+    position: fixed;
+    right: 32px;
+    transform: translateY(80px);
+    transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 10000;
+}
+
+button.footer-button::after {
+    content: none;
+}
+
+button.footer-button span.button-content {
+    background: #ffffff;
+    height: 40px;
+}
+
+/* button.footer-button span.button-content span.material-icons {
+    margin: 0 auto;
+} */
+
+@media only screen and (max-width: 720px) {
+    button.footer-button {
+        bottom: 48px;
+        right: 8px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    button.footer-button {
+        bottom: 24px;
+        left: calc(50% - 58px);
     }
 }
 
@@ -526,7 +633,6 @@ a.footer-link {
     position: relative;
     transition: color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     z-index: 10;
-
 }
 
 a.footer-link::after {
